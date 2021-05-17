@@ -1,0 +1,159 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.clock {
+  --size: 400px;
+  --main-border: calc(var(--size) / 20);
+  --full-size: calc(var(--size) + 2 * var(--main-border));
+  --hour-tick-width: calc(var(--size) / 100);
+  --hour-tick-height: calc(var(--size) / 15);
+  --minute-tick-width: calc(var(--size) / 200);
+  --minute-tick-height: calc(var(--size) / 45);
+  --center-size: calc(var(--size) / 30);
+  --hours-hand-width: calc(var(--size) / 40);
+  --hours-hand-height: calc(var(--size) / 4);
+  --minutes-hand-width: calc(var(--size) / 100);
+  --minutes-hand-height: calc(var(--size) / 3);
+  --seconds-hand-width: calc(var(--size) / 150);
+  --seconds-hand-height: calc(var(--size) / 2.5);
+  position: relative;
+  margin: 32px auto;
+  width: var(--full-size);
+  height: var(--full-size);
+  border-radius: var(--size);
+  border: var(--main-border) solid black;
+}
+
+.hours {
+  --tick-width: var(--hour-tick-width);
+  --tick-height: var(--hour-tick-height);
+}
+
+.minutes {
+  --tick-width: var(--minute-tick-width);
+  --tick-height: var(--minute-tick-height);
+}
+
+/* Explain why we do this trick */
+.hour-tick,
+.minute-tick {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--size);
+}
+
+.hour-tick:after,
+.minute-tick:after {
+  position: absolute;
+  content: "";
+
+  width: var(--tick-width);
+  height: var(--tick-height);
+  background-color: black;
+  top: 0;
+  left: calc(var(--size) / 2 - var(--tick-width) / 2);
+}
+
+.center {
+  position: absolute;
+  top: calc(var(--size) / 2 - var(--center-size) / 2);
+  left: calc(var(--size) / 2 - var(--center-size) / 2);
+  width: var(--center-size);
+  height: var(--center-size);
+  background: black;
+  border-radius: var(--center-size);
+  z-index: 4;
+}
+
+.hours-hand {
+  --hand-width: var(--hours-hand-width);
+  --hand-height: var(--hours-hand-height);
+}
+
+.minutes-hand {
+  --hand-width: var(--minutes-hand-width);
+  --hand-height: var(--minutes-hand-height);
+}
+
+.seconds-hand {
+  --hand-width: var(--seconds-hand-width);
+  --hand-height: var(--seconds-hand-height);
+}
+
+.hand {
+  width: 100%;
+  height: 100%;
+}
+
+.hand-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: var(--size);
+}
+
+.hand:after {
+  position: absolute;
+  content: "";
+
+  width: var(--hand-width);
+  height: var(--hand-height);
+  background: black;
+  top: calc(var(--size) / 2 - var(--hand-height));
+  left: calc(var(--size) / 2 - var(--hand-width) / 2);
+  border-radius: var(--hand-height);
+}
+
+.hours-hand {
+  z-index: 3;
+}
+
+.minutes-hand {
+  z-index: 2;
+}
+
+.seconds-hand {
+  z-index: 1;
+}
+
+.seconds-hand:after {
+  background: red;
+}
+
+.hours-hand {
+  animation: spin 86400s linear infinite;
+}
+
+.minutes-hand {
+  animation: spin 3600s linear infinite;
+}
+
+.seconds-hand {
+  animation: spin 60s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
