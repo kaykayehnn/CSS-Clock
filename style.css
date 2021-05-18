@@ -31,6 +31,12 @@ html {
   border: var(--main-border) solid black;
 }
 
+@media screen and (max-width: 600px) {
+  .clock {
+    --size: 280px;
+  }
+}
+
 .hours {
   --tick-width: var(--hour-tick-width);
   --tick-height: var(--hour-tick-height);
