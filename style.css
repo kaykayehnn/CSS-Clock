@@ -139,7 +139,7 @@ html {
 }
 
 .hours-hand {
-  animation: spin 86400s linear infinite;
+  animation: spin 43200s linear infinite;
 }
 
 .minutes-hand {
